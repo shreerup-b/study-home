@@ -27,7 +27,7 @@ const GlobalStyle = () => (
       --shadow-lg:0 34px 70px -30px rgba(10,27,51,.55);
     }
     *{box-sizing:border-box}
-    .sh-root{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+    .sh-root{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:clip}
     .display{font-family:Sora,Inter,system-ui,sans-serif;letter-spacing:-.02em}
     .num{font-family:Sora,Inter,sans-serif;font-variant-numeric:tabular-nums}
     a{color:inherit;text-decoration:none}
@@ -845,11 +845,11 @@ function TeacherDirectory() {
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name or area…"
             style={{ border: 0, outline: 0, fontSize: 14.5, width: "100%", background: "transparent" }} />
         </div>
-        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+        <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
           <Filter size={15} color="var(--muted)" />
           {subjects.map((s) => <button key={s} className={"chip" + (subj === s ? " on" : "")} onClick={() => setSubj(s)}>{s}</button>)}
         </div>
-        <div style={{ display: "flex", gap: 6 }}>
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
           {tags.map((t) => <button key={t} className={"chip" + (tag === t ? " on" : "")} onClick={() => setTag(t)}>{t}</button>)}
         </div>
       </div>
