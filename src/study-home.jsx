@@ -64,6 +64,11 @@ const GlobalStyle = () => (
     .lead{color:var(--muted);font-size:17px;line-height:1.6;max-width:640px;margin-top:14px}
     .grid{display:grid;gap:22px}
     @media(max-width:820px){.section{padding:64px 0}.hide-sm{display:none!important}}
+    @media(max-width:760px){
+      .grid{grid-template-columns:1fr!important}
+      .split-side{border-left:0!important;padding-left:0!important;border-top:1px solid var(--line)!important;padding-top:18px!important;margin-top:4px}
+      .wrap{padding:0 16px}
+    }
     @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}
       .reveal{opacity:1;transform:none}}
     ::-webkit-scrollbar{width:10px;height:10px}
@@ -642,7 +647,7 @@ function TeacherReg() {
       </div>
       <div style={{ padding: "0 26px 26px" }}>
         {step === 0 && (
-          <div style={{ display: "grid", gap: 14, gridTemplateColumns: "1fr 1fr" }}>
+          <div className="grid" style={{ gap: 14, gridTemplateColumns: "1fr 1fr" }}>
             <Field label="Full name" ph="e.g. Ananya Sen" />
             <Field label="Phone" ph="98304 99675" />
             <Field label="Email" ph="you@email.com" />
@@ -765,7 +770,7 @@ function ParentBooking({ openParent }) {
     );
   }
   return (
-    <div className="card" style={{ padding: 24, display: "grid", gap: 24, gridTemplateColumns: "minmax(0,1fr) minmax(0,260px)" }}>
+    <div className="card grid" style={{ padding: 24, gap: 24, gridTemplateColumns: "minmax(0,1fr) minmax(0,260px)" }}>
       <div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
           <strong className="display" style={{ fontSize: 17 }}>Book your child's free demo</strong>
@@ -788,7 +793,7 @@ function ParentBooking({ openParent }) {
           ))}
         </div>
       </div>
-      <div style={{ borderLeft: "1px solid var(--line)", paddingLeft: 22 }}>
+      <div className="split-side" style={{ borderLeft: "1px solid var(--line)", paddingLeft: 22 }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: "var(--slate)" }}>Pick a time slot</div>
         <div style={{ display: "grid", gap: 8, marginTop: 10 }}>
           {slots.map((s) => (
@@ -943,7 +948,7 @@ function ReachGlobe({ scope }) {
   useEffect(() => {
     const ro = new ResizeObserver((e) => {
       const w = e[0].contentRect.width;
-      setSize(Math.max(300, Math.min(w - 16, 560)));
+      setSize(Math.max(240, Math.min(w - 16, 560)));
     });
     if (wrapRef.current) ro.observe(wrapRef.current);
     return () => ro.disconnect();
